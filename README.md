@@ -7,7 +7,7 @@ We propose a computationally-friendly adaptive learning rate schedule, "AdaLoss"
 Moreover, we provide a linear convergence guarantee over the non-convex regime, in the context of two-layer over-parameterized neural networks. If the width of the first-hidden layer in the two-layer networks is sufficiently large (polynomially), then AdaLoss converges robustly *to the global minimum* in polynomial time. We numerically verify the theoretical results and extend the scope of the numerical experiments by considering applications in LSTM models for text clarification and policy gradients for control problems.
 
 ## AdaLoss Algorithm
-![](figures/adaloss.png)
+<img src="figures/adaloss.png" width=500>
 
 ## Requirements
 - The implementation is based on Python 3
