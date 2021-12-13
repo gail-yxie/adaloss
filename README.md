@@ -62,11 +62,12 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10     | 90.56±0.25 | 90.67±0.15 | 90.46±0.26 | 90.60±0.08 |
 | 100    | 89.51±0.0  | 89.80±0.12 | 89.75±0.09 | 89.43±0.13 |
 
-##License 
+
+## License 
 - This repo was adapted and modified from [ELR](https://github.com/shengliu66/ELR).
 - This README is formatted based on [releasing-research-code](https://github.com/paperswithcode/releasing-research-code).
 
-##Bibtex
+## Bibtex
 @article{wu2021adaloss,
 title={AdaLoss: A computationally-efficient and provably convergent adaptive gradient method},
 author={Wu, Xiaoxia and Xie, Yuege and Du, Simon and Ward, Rachel},
