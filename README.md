@@ -68,7 +68,7 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 - This README is formatted based on [releasing-research-code](https://github.com/paperswithcode/releasing-research-code).
 
 ## Bibtex
-`````@article{wu2021adaloss,
+```@article{wu2021adaloss,
 title={AdaLoss: A computationally-efficient and provably convergent adaptive gradient method},
 author={Wu, Xiaoxia and Xie, Yuege and Du, Simon and Ward, Rachel},
 journal={arXiv preprint arXiv:2109.08282},
