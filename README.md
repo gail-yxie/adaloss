@@ -73,4 +73,5 @@ title={AdaLoss: A computationally-efficient and provably convergent adaptive gra
 author={Wu, Xiaoxia and Xie, Yuege and Du, Simon and Ward, Rachel},
 journal={arXiv preprint arXiv:2109.08282},
 year={2021}
-}```
+}
+```
