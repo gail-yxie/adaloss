@@ -37,7 +37,7 @@
     "train_loss": {
         "type": "CrossEntropy",
         "args": {
-            "beta": 0.0,
+            "alpha": 1,
             "b0": 0.0
         }
     },

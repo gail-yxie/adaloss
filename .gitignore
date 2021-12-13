@@ -132,3 +132,4 @@ dmypy.json
 /saved_adaloss/
 /saved_sgd_b0/
 /saved_sgd_sqrt/
+/saved_adagrad_norm/

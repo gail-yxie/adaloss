@@ -68,7 +68,7 @@ def main(config: ConfigParser):
 
     train_loss = getattr(module_loss, config['train_loss']['type'])(num_examp=num_examp,
                                                                     num_classes=config['num_classes'],
-                                                                    beta=config['train_loss']['args']['beta'])
+                                                                    alpha=config['train_loss']['args']['alpha'])
 
     val_loss = getattr(module_loss, config['val_loss'])
     metrics = [getattr(module_metric, met) for met in config['metrics']]
@@ -118,7 +118,8 @@ if __name__ == '__main__':
         CustomArgs(['--wd', '--weight_decay'], type=float, target=('optimizer', 'args', 'weight_decay')),
         CustomArgs(['--bs', '--batch_size'], type=int, target=('data_loader', 'args', 'batch_size')),
         CustomArgs(['--b0', '--b0'], type=float, target=('train_loss', 'args', 'b0')),
-        CustomArgs(['--beta', '--beta'], type=float, target=('train_loss', 'args', 'beta')),
+        CustomArgs(['--alpha', '--alpha'], type=float, target=('train_loss', 'args', 'alpha')),
+        CustomArgs(['--cc', '--cc'], type=float, target=('train_loss', 'args', 'cc')),
         CustomArgs(['--name', '--exp_name'], type=str, target=('name',)),
         CustomArgs(['--seed', '--seed'], type=int, target=('seed',)),
         CustomArgs(['--ep', '--epochs'], type=int, target=('trainer', 'epochs')),

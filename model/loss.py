@@ -10,12 +10,12 @@ def cross_entropy(output, target):
 
 
 class AbstractLoss(nn.Module):
-    def __init__(self, num_examp, num_classes=10, beta=0.0):
+    def __init__(self, num_examp, num_classes=10, alpha=0.0):
         super().__init__()
         self.num_examp = num_examp
         self.USE_CUDA = torch.cuda.is_available()
         self.num_classes = num_classes
-        self.beta = beta
+        self.alpha = alpha
         self.rate = -1
         self.config = ConfigParser.get_instance()
         self.b0 = self.config['train_loss']['args']['b0']
@@ -26,16 +26,16 @@ class AbstractLoss(nn.Module):
 
 
 class CrossEntropy(AbstractLoss):
-    def __init__(self, num_examp, num_classes=10, beta=0.0):
-        super().__init__(num_examp, num_classes, beta)
+    def __init__(self, num_examp, num_classes=10, alpha=0.0):
+        super().__init__(num_examp, num_classes, alpha)
 
     def forward(self, index, output, label):
         return F.cross_entropy(output, label)
 
 
 class PlainLossb0(AbstractLoss):
-    def __init__(self, num_examp, num_classes=10, beta=0.0):
-        super().__init__(num_examp, num_classes, beta)
+    def __init__(self, num_examp, num_classes=10, alpha=0.0):
+        super().__init__(num_examp, num_classes, alpha)
 
     def update_rate(self, tmp_loss):
         if self.b0 == 0:
@@ -49,20 +49,21 @@ class PlainLossb0(AbstractLoss):
 
 
 class PlainLossSqrt(PlainLossb0):
-    def __init__(self, num_examp, num_classes=10, beta=0.0):
-        super().__init__(num_examp, num_classes, beta)
+    def __init__(self, num_examp, num_classes=10, alpha=0.0):
+        super().__init__(num_examp, num_classes, alpha)
         self.t = 0
 
     def update_rate(self, tmp_loss):
         self.t += 1
-        self.rate = 1.0 / np.sqrt(self.b0 ** 2 + self.t * (1 - self.beta))
+        self.rate = 1.0 / np.sqrt(self.b0 ** 2 + self.t * self.alpha)
 
 
 class AdaLoss(PlainLossb0):
-    def __init__(self, num_examp, num_classes=10, beta=0.0):
-        super().__init__(num_examp, num_classes, beta)
+    def __init__(self, num_examp, num_classes=10, alpha=0.0):
+        super().__init__(num_examp, num_classes, alpha)
         self.acc_loss_array = np.array(self.b0 ** 2)
+        self.cc = self.config['train_loss']['args']['cc']
 
     def update_rate(self, tmp_loss):
-        self.acc_loss_array += tmp_loss.item() * (1 - self.beta)
+        self.acc_loss_array += abs(tmp_loss.item() - self.cc) * self.alpha
         self.rate = 1.0 / self.acc_loss_array ** 0.5

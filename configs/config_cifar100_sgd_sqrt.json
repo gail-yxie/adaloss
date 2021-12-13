@@ -36,7 +36,7 @@
     "train_loss": {
         "type": "PlainLossSqrt",
         "args": {
-            "beta": 0.0,
+            "alpha": 1,
             "b0": 1.0
         }
     },

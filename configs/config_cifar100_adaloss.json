@@ -36,8 +36,9 @@
     "train_loss": {
         "type": "AdaLoss",
         "args": {
-            "beta": 0.0,
-            "b0": 1.0
+            "alpha": 1,
+            "b0": 1.0,
+            "cc" : 0
         }
     },
 
