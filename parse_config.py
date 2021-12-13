@@ -57,7 +57,7 @@ class ConfigParser:
         timestamp = datetime.now().strftime(r'%m%d_%H%M%S') if timestamp else ''
 
         exper_name = self.config['name'] + '_' + self.config['arch']['type'] + \
-                     '_b0_' + str(self.config['train_loss']['args']['b0'])
+                     '_b0_' + str(self.config['train_loss']['args']['b0']) + timestamp
 
         self._save_dir = save_dir / 'models' / exper_name
         self._log_dir = save_dir / 'log' / exper_name
