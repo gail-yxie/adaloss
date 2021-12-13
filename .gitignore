@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/dir_to_cifar100/
+/run_models/
+/saved_adaloss/
+/saved_sgd_b0/
+/saved_sgd_sqrt/

@@ -63,7 +63,6 @@
         "early_stop": 2000,
         "tensorboard": false,
         "mlflow": true,
-        "alg": "sgd_b0",
-        "trans_type": "vit"
+        "alg": "sgd_b0"
     }
 }

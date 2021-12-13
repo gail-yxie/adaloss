@@ -64,7 +64,6 @@
         "early_stop": 2000,
         "tensorboard": false,
         "mlflow": true,
-        "alg": "adagrad_norm",
-        "trans_type": "vit"
+        "alg": "adagrad_norm"
     }
 }
