@@ -1,0 +1,69 @@
+{
+    "name": "cifar100_sgd_b0",
+    "n_gpu": 1,
+    "seed": 123,
+
+    "arch": {
+        "type": "vits16r224",
+        "args": {
+            "num_classes": 100
+        }
+    },
+
+    "num_classes": 100,
+
+    "data_loader": {
+        "type": "CIFAR100DataLoader",
+        "args":{
+            "data_dir": "./dir_to_cifar100/",
+            "batch_size": 128,
+            "shuffle": true,
+            "validation_split": 0,
+            "num_workers": 8,
+            "pin_memory": true
+        }
+    },
+
+    "optimizer": {
+        "type": "SGD",
+        "args":{
+            "lr": 0.1,
+            "momentum": 0.0,
+            "weight_decay": 1e-4
+        }
+    },
+
+    "train_loss": {
+        "type": "PlainLossb0",
+        "args": {
+            "beta": 0.0,
+            "b0": 1.0
+        }
+    },
+
+    "val_loss": "cross_entropy",
+    "metrics": [
+        "my_metric", "my_metric2"
+    ],
+
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 100
+        }
+    },
+
+    "trainer": {
+        "epochs": 10,
+        "save_dir": "saved_sgd_b0/",
+        "save_period": 100,
+        "verbosity": 2,
+        "label_dir": "saved_sgd_b0/",
+        "monitor": "max val_my_metric",
+        "early_stop": 2000,
+        "tensorboard": false,
+        "mlflow": true,
+        "alg": "sgd_b0",
+        "trans_type": "vit"
+    }
+}
