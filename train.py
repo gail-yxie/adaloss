@@ -80,7 +80,7 @@ def main(config: ConfigParser):
         optimizer = Adagradnorm(trainable_params, lr=config['optimizer']['args']['lr'],
                                 weight_decay=config['optimizer']['args']['weight_decay'],
                                 momentum=config['optimizer']['args']['momentum'],
-                                initial_accumulator_value=config['optimizer']['args']['initial_accumulator_value'])
+                                initial_accumulator_value=config['optimizer']['args']['initial_accumulator_value']**2)
     else:
         optimizer = config.initialize('optimizer', torch.optim, [{'params': trainable_params}])
 
