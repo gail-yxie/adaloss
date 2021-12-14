@@ -58,7 +58,7 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10     | 90.45±0.02 | 90.57±0.38 | 90.43±0.08 | 90.54±0.08 |
 | 100    | 89.54±0.11 | 89.93±0.11 | 89.88±0.08 | 89.55±0.08 |
 
-- With pretrained CNN, ResNet50-swsl
+- With pretrained CNN, ResNet50-swsl (to be replaced with new results)
 
 | b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |
 |--------|----------------|----------------|----------------|----------------|
