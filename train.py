@@ -80,7 +80,7 @@ def main(config: ConfigParser):
         optimizer = Adagradnorm(trainable_params, lr=config['optimizer']['args']['lr'],
                                 weight_decay=config['optimizer']['args']['weight_decay'],
                                 momentum=config['optimizer']['args']['momentum'],
-                                initial_accumulator_value=config['optimizer']['args']['initial_accumulator_value'])
+                                initial_accumulator_value=config['train_loss']['args']['b0'])
     else:
         optimizer = config.initialize('optimizer', torch.optim, [{'params': trainable_params}])
 
@@ -123,8 +123,7 @@ if __name__ == '__main__':
         CustomArgs(['--name', '--exp_name'], type=str, target=('name',)),
         CustomArgs(['--seed', '--seed'], type=int, target=('seed',)),
         CustomArgs(['--ep', '--epochs'], type=int, target=('trainer', 'epochs')),
-        CustomArgs(['--model', '--model'], type=str, target=('arch', 'type')),
-        CustomArgs(['--adanormb0', '--normb0'], type=float, target=('optimizer', 'args', 'initial_accumulator_value'))
+        CustomArgs(['--model', '--model'], type=str, target=('arch', 'type'))
     ]
     config = ConfigParser.get_instance(args, options)
 

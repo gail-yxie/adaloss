@@ -31,20 +31,19 @@ The scripts load pre-trianed models from the awesome pytorch image models (timm)
 ```
 usage: python.py [-c] [--model pretrained model] [--lr learning rate] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
 ```
-- Options ```--b0, --alpha``` and ```--cc``` are $b_0$, $\alpha$ $c$ in AdaLoss' algorithm with c=0 and alpha=1 as defaults.
 - To fine-tuning the pre-trianed deep neural network model---ViT S/16 (vision transformer)---on CIFAR100 as the experiments in the paper, run this command:
 
 ```train
 python train.py -c ./configs/config_cifar100_adaloss.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4 
 python train.py -c ./configs/config_cifar100_sgd_b0.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4
 python train.py -c ./configs/config_cifar100_sgd_sqrt.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4
-python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r224 --adanormb0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4   
+python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4   
 ```
 - To fine-tuning the ResNet50-swsl model, parse ```--model swsl_resnet50```
 
 ## Results
 
-Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl and image size 224x224.
+Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl. 
 Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 5 runs.
 
 ### [Image Classification on CIFAR100](https://www.cs.toronto.edu/~kriz/cifar.html)
@@ -58,7 +57,7 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10     | 90.45±0.02 | 90.57±0.38 | 90.43±0.08 | 90.54±0.08 |
 | 100    | 89.54±0.11 | 89.93±0.11 | 89.88±0.08 | 89.55±0.08 |
 
-- With pretrained CNN, ResNet50-swsl (to be replaced with new results)
+- With pretrained CNN, ResNet50-swsl
 
 | b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |
 |--------|----------------|----------------|----------------|----------------|
