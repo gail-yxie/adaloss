@@ -31,6 +31,7 @@ The scripts load pre-trianed models from the awesome pytorch image models (timm)
 ```
 usage: python.py [-c] [--model pretrained model] [--lr learning rate] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
 ```
+- Options ```--b0, --alpha``` and ```--cc``` are $b_0$, $\alpha$ $c$ in AdaLoss' algorithm with c=0 and alpha=1 as defaults.
 - To fine-tuning the pre-trianed deep neural network model---ViT S/16 (vision transformer)---on CIFAR100 as the experiments in the paper, run this command:
 
 ```train
