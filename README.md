@@ -44,7 +44,7 @@ python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r22
 
 ## Results
 
-Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl. 
+Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl and image size 224x224.
 Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 5 runs.
 
 ### [Image Classification on CIFAR100](https://www.cs.toronto.edu/~kriz/cifar.html)
