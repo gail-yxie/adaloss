@@ -6,9 +6,9 @@ This repository is the official implementation of [AdaLoss: A computationally-ef
 We propose a computationally-friendly adaptive learning rate schedule, "AdaLoss", which directly uses the information of the loss function to adjust the stepsize in gradient descent methods. We prove that this schedule enjoys linear convergence in  linear regression.
 Moreover, we provide a linear convergence guarantee over the non-convex regime, in the context of two-layer over-parameterized neural networks. If the width of the first-hidden layer in the two-layer networks is sufficiently large (polynomially), then AdaLoss converges robustly *to the global minimum* in polynomial time. We numerically verify the theoretical results and extend the scope of the numerical experiments by considering applications in LSTM models for text clarification and policy gradients for control problems.
 
-## AdaLoss Algorithm (we let c=0, alpha=1)
+## AdaLoss Algorithm
 <img src="figures/adaloss.png" width=500>
-
+In over-parameterized settings, we let c=0, alpha=1.
 ## Requirements
 - The implementation is based on Python 3
 - To install requirements:
@@ -26,11 +26,12 @@ The scripts load pre-trianed models from the awesome pytorch image models (timm)
 - [PyTorch Image Models (timm)](https://github.com/rwightman/pytorch-image-models).
 
 ## Training (Fine-tuning)
-- Code for AdaLoss is implementated in ```loss.py```
+- Code for AdaLoss is implemented in ```loss.py```
 - Code for training is in ```train.py``` with the following options:
 ```
 usage: python.py [-c] [--model pretrained model] [--lr learning rate] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
 ```
+- Options ```--b0, --alpha``` and ```--cc``` are $b_0$, $\alpha$ $c$ in AdaLoss' algorithm with c=0 and alpha=1 as defaults in the over-parameterized settings.
 - To fine-tuning the pre-trianed deep neural network model---ViT S/16 (vision transformer)---on CIFAR100 as the experiments in the paper, run this command:
 
 ```train
@@ -43,7 +44,7 @@ python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r22
 
 ## Results
 
-Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl. 
+Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl, with image size 224x224.
 Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 5 runs.
 
 ### [Image Classification on CIFAR100](https://www.cs.toronto.edu/~kriz/cifar.html)
@@ -57,7 +58,7 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10     | 90.45±0.02 | 90.57±0.38 | 90.43±0.08 | 90.54±0.08 |
 | 100    | 89.54±0.11 | 89.93±0.11 | 89.88±0.08 | 89.55±0.08 |
 
-- With pretrained CNN, ResNet50-swsl
+- With pretrained CNN, ResNet50-swsl (to be replaced with new results)
 
 | b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |
 |--------|----------------|----------------|----------------|----------------|
