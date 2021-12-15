@@ -57,7 +57,7 @@ class Trainer(BaseTrainer):
 
             # save logged information into log dict
             log = {'epoch': epoch}
-            mtr_name = ['top1 accuracy', 'top5 accuracy']
+            mtr_name = ['top1_accuracy', 'top5_accuracy']
             for key, value in result.items():
                 if key == 'metrics':
                     log.update({mtr_name[i]: value[i] for i, mtr in enumerate(self.metrics)})
