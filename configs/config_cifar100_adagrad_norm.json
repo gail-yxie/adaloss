@@ -59,7 +59,7 @@
         "save_period": 100,
         "verbosity": 2,
         "label_dir": "saved_adagrad_norm/",
-        "monitor": "max val_top1 accuracy",
+        "monitor": "max val_top1_accuracy",
         "early_stop": 2000,
         "tensorboard": false,
         "mlflow": true,
