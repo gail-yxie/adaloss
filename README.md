@@ -29,16 +29,16 @@ The scripts load pre-trianed models from the awesome pytorch image models (timm)
 - Code for AdaLoss is implemented in ```loss.py```
 - Code for training is in ```train.py``` with the following options:
 ```
-usage: python.py [-c] [--model pretrained model] [--lr learning rate] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
+usage: python.py [-c] [--model pretrained model] [--eta eta] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
 ```
 - Options ```--b0, --alpha``` and ```--cc``` are $b_0$, $\alpha$ $c$ in AdaLoss' algorithm with c=0 and alpha=1 as defaults in the over-parameterized settings.
 - To fine-tuning the pre-trianed deep neural network model---ViT S/16 (vision transformer)---on CIFAR100 as the experiments in the paper, run this command:
 
 ```train
-python train.py -c ./configs/config_cifar100_adaloss.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4 
-python train.py -c ./configs/config_cifar100_sgd_b0.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4
-python train.py -c ./configs/config_cifar100_sgd_sqrt.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4
-python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r224 --b0 1 --lr 0.1 --epochs 10 --weight_decay 1e-4   
+python train.py -c ./configs/config_cifar100_adaloss.json --model vits16r224 --b0 1 --eta 0.1 --epochs 10 --weight_decay 1e-4 
+python train.py -c ./configs/config_cifar100_sgd_b0.json --model vits16r224 --b0 1 --eta 0.1 --epochs 10 --weight_decay 1e-4
+python train.py -c ./configs/config_cifar100_sgd_sqrt.json --model vits16r224 --b0 1 --eta 0.1 --epochs 10 --weight_decay 1e-4
+python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r224 --b0 1 --eta 0.1 --epochs 10 --weight_decay 1e-4   
 ```
 - To fine-tuning the ResNet50-swsl model, parse ```--model swsl_resnet50```
 

@@ -57,13 +57,14 @@ class Trainer(BaseTrainer):
 
             # save logged information into log dict
             log = {'epoch': epoch}
+            mtr_name = ['top1 accuracy', 'top5 accuracy']
             for key, value in result.items():
                 if key == 'metrics':
-                    log.update({mtr.__name__: value[i] for i, mtr in enumerate(self.metrics)})
+                    log.update({mtr_name[i]: value[i] for i, mtr in enumerate(self.metrics)})
                 elif key == 'val_metrics':
-                    log.update({'val_' + mtr.__name__: value[i] for i, mtr in enumerate(self.metrics)})
+                    log.update({'val_' + mtr_name[i]: value[i] for i, mtr in enumerate(self.metrics)})
                 elif key == 'test_metrics':
-                    log.update({'test_' + mtr.__name__: value[i] for i, mtr in enumerate(self.metrics)})
+                    log.update({'test_' + mtr_name[i]: value[i] for i, mtr in enumerate(self.metrics)})
                 else:
                     log[key] = value
 
@@ -144,12 +145,14 @@ class Trainer(BaseTrainer):
             if batch_idx == self.len_epoch:
                 break
 
+        optimizer_lr = self.lr_scheduler.get_last_lr()[0]
+        effective_lr = "NA" if criterion.rate == "NA" else optimizer_lr * criterion.rate
         log = {
             'loss': total_loss / self.len_epoch,
             'metrics': (total_metrics / self.len_epoch).tolist(),
-            'learning rate': self.lr_scheduler.get_last_lr(),
+            'eta': optimizer_lr,
             'acc_loss': criterion.acc_loss_array,
-            'rates': criterion.rate,
+            'effective lr': effective_lr,
             'b0': self.config['train_loss']['args']['b0']
         }
 
@@ -164,8 +167,6 @@ class Trainer(BaseTrainer):
 
         if self.lr_scheduler is not None:
             self.lr_scheduler.step()
-
-        criterion.update_epoch_acc_rate()
 
         return log
 

@@ -16,7 +16,7 @@ class AbstractLoss(nn.Module):
         self.USE_CUDA = torch.cuda.is_available()
         self.num_classes = num_classes
         self.alpha = alpha
-        self.rate = -1
+        self.rate = 1.0
         self.config = ConfigParser.get_instance()
         self.b0 = self.config['train_loss']['args']['b0']
         self.acc_loss_array = "NA"
@@ -28,6 +28,7 @@ class AbstractLoss(nn.Module):
 class CrossEntropy(AbstractLoss):
     def __init__(self, num_examp, num_classes=10, alpha=0.0):
         super().__init__(num_examp, num_classes, alpha)
+        self.rate = "NA"
 
     def forward(self, index, output, label):
         return F.cross_entropy(output, label)
