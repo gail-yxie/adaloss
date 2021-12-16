@@ -1,7 +1,6 @@
 # AdaLoss: A computationally-efficient and provably convergent adaptive gradient method
 
 This repository is the official implementation of [AdaLoss: A computationally-efficient and provably convergent adaptive gradient method](https://arxiv.org/pdf/2109.08282.pdf) (AAAI 2022).
-- 
 
 We propose a computationally-friendly adaptive learning rate schedule, "AdaLoss", which directly uses the information of the loss function to adjust the stepsize in gradient descent methods. We prove that this schedule enjoys linear convergence in  linear regression.
 Moreover, we provide a linear convergence guarantee over the non-convex regime, in the context of two-layer over-parameterized neural networks. If the width of the first-hidden layer in the two-layer networks is sufficiently large (polynomially), then AdaLoss converges robustly *to the global minimum* in polynomial time. We numerically verify the theoretical results and extend the scope of the numerical experiments by considering applications in LSTM models for text clarification and policy gradients for control problems.
