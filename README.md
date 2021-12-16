@@ -41,6 +41,7 @@ python train.py -c ./configs/config_cifar100_sgd_sqrt.json --model vits16r224 --
 python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r224 --b0 1 --eta 0.1 --epochs 10 --weight_decay 1e-4   
 ```
 - To fine-tuning the ResNet50-swsl model, parse ```--model swsl_resnet50```
+- In the output logs, effective lr = eta/b_t at the last iteration of an epoch.
 
 ## Results
 
@@ -58,15 +59,10 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10     | 90.45±0.02 | 90.57±0.38 | 90.43±0.08 | 90.54±0.08 |
 | 100    | 89.54±0.11 | 89.93±0.11 | 89.88±0.08 | 89.55±0.08 |
 
-- With pretrained CNN, ResNet50-swsl (to be replaced with new results)
+<!-- - With pretrained CNN, ResNet50-swsl (to be replaced with new results)
 
 | b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |
 |--------|----------------|----------------|----------------|----------------|
-| 0.01   | 90.77±0.12 | 62.22±1.47 | N/A            | 90.50±0.21 |
-| 0.1    | 90.78±0.03 | 86.61±0.38 | N/A            | 90.57±0.08 |
-| 1      | 90.65±0.26 | 88.98±0.45 | 82.73±1.17 | 90.61±0.11 |
-| 10     | 90.56±0.25 | 90.67±0.15 | 90.46±0.26 | 90.60±0.08 |
-| 100    | 89.51±0.0  | 89.80±0.12 | 89.75±0.09 | 89.43±0.13 |
 
 
 ## License 
