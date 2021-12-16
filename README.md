@@ -45,7 +45,7 @@ python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r22
 
 ## Results
 
-Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16, with image size 224x224 and batch size 64.
+Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and CNN ResNet50-swsl, with image size 224x224 and batch size 64.
 Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 3 runs.
 
 ### [Image Classification on CIFAR100](https://www.cs.toronto.edu/~kriz/cifar.html)
@@ -59,11 +59,15 @@ Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 
 | 10    | 90.50±0.17 | 90.83±0.17 | 90.36±0.11 | 90.44±0.19 |
 | 100   | 89.62±0.12 | 89.99±0.11 | 89.85±0.14 | 89.58±0.06 |
 
-[comment]: <> (- With pretrained CNN, ResNet50-swsl &#40;to be replaced with new results&#41;)
+- With pretrained CNN, ResNet50-swsl
 
-[comment]: <> (| b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |)
-
-[comment]: <> (|--------|----------------|----------------|----------------|----------------|)
+| b_0   | AdaLoss    | AdaGrad-Norm | SGD\_Constant | SGD\_DecaySqrt |
+|-------|------------|--------------|---------------|----------------|
+| 0.01  | 84.0±0.51  | 64.57±1.70   | 2.33±0.35     | 83.66±0.13 |
+| 0.1   | 84.29±0.27 | 68.24±2.55   | 26.02±6.45    | 83.70±0.38 |
+| 1     | 83.96±0.64 | 80.13±1.06   | 63.36±6.69    | 83.98±0.13 |
+| 10    | 84.26±0.44 | 83.02±0.79   | 81.02±0.94    | 84.79±0.20 |
+| 100   | 83.03±0.19 | 83.32±0.20   | 83.53±0.13    | 83.10±0.29 |
 
 
 ## License 
