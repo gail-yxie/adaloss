@@ -9,6 +9,7 @@ Moreover, we provide a linear convergence guarantee over the non-convex regime, 
 ## AdaLoss Algorithm
 <img src="figures/adaloss.png" width=500>
 In over-parameterized settings, we let c=0, alpha=1.
+
 ## Requirements
 - The implementation is based on Python 3
 - To install requirements:
