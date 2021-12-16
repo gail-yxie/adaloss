@@ -31,7 +31,7 @@ The scripts load pre-trianed models from the awesome pytorch image models (timm)
 ```
 usage: python.py [-c] [--model pretrained model] [--eta eta] [--epochs training epochs] [--weight_decay weight_decay] [--b0 initial learning rate parameter] [--adanormb0 b0 for adagrad_norm] [--alpha alpha in AdaLoss] [--cc c in AdaLoss] [--momentum optimizer momentum] [--bs training batch_size] [--seed random seed] [--name experiment name]
 ```
-- Options ```--b0, --alpha``` and ```--cc``` are $b_0$, $\alpha$ $c$ in AdaLoss' algorithm with c=0 and alpha=1 as defaults in the over-parameterized settings.
+- Options ```--b0, --alpha``` and ```--cc``` are b_0, \alpha c in AdaLoss' algorithm with c=0 and alpha=1 as defaults in the over-parameterized settings.
 - To fine-tuning the pre-trianed deep neural network model---ViT S/16 (vision transformer)---on CIFAR100 as the experiments in the paper, run this command:
 
 ```train
@@ -45,24 +45,25 @@ python train.py -c ./configs/config_cifar100_adagrad_norm.json --model vits16r22
 
 ## Results
 
-Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16 and ResNet50-swsl, with image size 224x224.
-Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 5 runs.
+Comparison of AdaLoss (ours), AdaGrad-Norm, SGD_Constant, SGD_DecaySqrt on test accuracy on CIFAR100 by fine-tuning on pretrained DNNs, vision transformer ViT-S/16, with image size 224x224 and batch size 64.
+Training: 45k, validation: 5k, and test: 10k. The results are mean and std over 3 runs.
 
 ### [Image Classification on CIFAR100](https://www.cs.toronto.edu/~kriz/cifar.html)
 - With pretrained vision transformer, ViT-S/16
 
-| b_0  | AdaLoss        | AdaGrad-Norm   | SGD\_Constant  | SGD\_DecaySqrt |
-|--------|----------------|----------------|----------------|----------------|
-| 0.01   | 90.62±0.20 | 61.79±2.42 | N/A            | 90.48±0.07 |
-| 0.1    | 90.79±0.04 | 86.59±0.09 | N/A            | 90.35±0.20 |
-| 1      | 90.77±0.12 | 89.20±0.20 | 82.98±0.26 | 90.66±0.06 |
-| 10     | 90.45±0.02 | 90.57±0.38 | 90.43±0.08 | 90.54±0.08 |
-| 100    | 89.54±0.11 | 89.93±0.11 | 89.88±0.08 | 89.55±0.08 |
+| b_0   | AdaLoss        | AdaGrad-Norm   | SGD\_Constant  | SGD\_DecaySqrt |
+|-------|----------------|----------------|----------------|----------------|
+| 0.01  | 90.65±0.09 | 68.34±2.87 | N/A            | 90.76±0.04 |
+| 0.1   | 90.64±0.15 | 86.27±0.43 | N/A            | 90.50±0.16 |
+| 1     | 90.58±0.12 | 89.33±0.02 | 83.21±0.81 | 90.52±0.07 |
+| 10    | 90.50±0.17 | 90.83±0.17 | 90.36±0.11 | 90.44±0.19 |
+| 100   | 89.62±0.12 | 89.99±0.11 | 89.85±0.14 | 89.58±0.06 |
 
-<!-- - With pretrained CNN, ResNet50-swsl (to be replaced with new results)
+[comment]: <> (- With pretrained CNN, ResNet50-swsl &#40;to be replaced with new results&#41;)
 
-| b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |
-|--------|----------------|----------------|----------------|----------------|
+[comment]: <> (| b_0    | AdaLoss        | AdaGrad-Norm   | SGD_Constant   | SGD_DecaySqrt  |)
+
+[comment]: <> (|--------|----------------|----------------|----------------|----------------|)
 
 
 ## License 
